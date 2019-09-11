@@ -4,38 +4,38 @@ import { Card, CardImgOverlay, CardImg, CardTitle } from 'reactstrap';
 // class Menu extends Component {
 
 //     render() {
-    function RenderMenuItem({dish, onClick}) {
-        return(
-            <Card onClick={() => props.onClick(dish.id)}>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{dish.name}</CardTitle>
-                        </CardImgOverlay>
-                    </Card>
+    function RenderMenuItem({ dish, onClick }) {
+        return (
+            <Card onClick={() => onClick(dish.id)}>
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardImgOverlay>
+                    <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
+            </Card>
         );
 
     }
 
-        console.log('Menu Component render invoked.')
+    console.log('Menu Component render invoked.')
 
-        const Menu = (props) => {
-            const menu = props.dishes.map((dish) => {
-                return (
-                    <div key={dish.id} className="col-12 col-md-5 m-1">
-                        <RenderMenuItem dish = {dish} onClick={props.onClick} />
-                    </div>
-                )
-            });
-    
+    const Menu = (props) => {
+        const menu = props.dishes.map((dish) => {
             return (
-                <div className="container">
-                    <div className="row">
-                        {menu}
-                    </div>
+                <div key={dish.id} className="col-12 col-md-5 m-1">
+                    <RenderMenuItem dish={dish} onClick={props.onClick} />
                 </div>
-            );
+            )
+        });
 
-        }
+        return (
+            <div className="container">
+                <div className="row">
+                    {menu}
+                </div>
+            </div>
+        );
+
+    }
 
 
 export default Menu;
