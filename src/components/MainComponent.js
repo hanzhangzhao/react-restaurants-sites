@@ -4,7 +4,8 @@ import Menu from './MenuComponent';
 import Contact from './ContactComponent';
 import DishDetail from './DishDetailComponent';
 import Header from './HearderComponent';
-import Footer from './FooterComponent'
+import Footer from './FooterComponent';
+import About from './AboutComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { LEADERS } from '../shared/leaders';
@@ -53,6 +54,12 @@ class Main extends Component {
       )
     }
 
+    const AboutUs = () => {
+      return (
+        <About leaders = {this.state.leaders.filter((leader) => leader.id)} />
+      )
+    }
+
     return (
       <div>
         {/* <Navbar dark color="primary">
@@ -68,6 +75,7 @@ class Main extends Component {
           <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />    {/* pass in a props to the menu component */}
           <Route path="/menu/:dishId" component={DishWithId} />
           <Route exact path="/contactus" component={Contact} />
+          <Route exact path="/aboutus" component={AboutUs} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
