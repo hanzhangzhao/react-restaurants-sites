@@ -14,11 +14,6 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 //     }
 
 function RenderDish({ dish }) {
-    if (dish == null) {
-        return (
-            <div></div>
-        )
-    }
     if (dish != null) {
         return (
             <div className="col-12 col-md-5 m-1">
@@ -39,7 +34,7 @@ function RenderDish({ dish }) {
     }
 }
 
-function RenderComment({ comments }) {
+function RenderComment({ comments, addComment, dishId }) {
 
     console.log('DishDetail Component render invoked.')
 
@@ -67,14 +62,13 @@ function RenderComment({ comments }) {
             <h4>comments </h4>
             <ul className="list-unstyled">
                 {comment}
-                <CommentForm />
+                <CommentForm dishId = {dishId} addComment={addComment} />
             </ul>
         </div>
     )
 }
 
 const DishDetail = (props) => {
-    const dish = props.dish;
 
     const dishDetail = <RenderDish dish={props.dish} />
 
@@ -94,7 +88,9 @@ const DishDetail = (props) => {
             </div>
             <div className="row">
                 {dishDetail}
-                <RenderComment comments={props.comments} />
+                <RenderComment comments={props.comments} 
+                    addComment={props.addComment}
+                    dishId={props.dish.id} />
             </div>
         </div>
     );
@@ -126,7 +122,9 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        alert("Current state is " + JSON.stringify(values));
+        // alert("Current state is " + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
