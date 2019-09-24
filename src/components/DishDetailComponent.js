@@ -36,7 +36,7 @@ function RenderDish({ dish }) {
     }
 }
 
-function RenderComment({ comments, addComment, dishId }) {
+function RenderComment({ comments, postComment, dishId }) {
 
     console.log('DishDetail Component render invoked.')
 
@@ -64,7 +64,7 @@ function RenderComment({ comments, addComment, dishId }) {
             <h4>comments </h4>
             <ul className="list-unstyled">
                 {comment}
-                <CommentForm dishId={dishId} addComment={addComment} />
+                <CommentForm dishId={dishId} postComment={postComment} />
             </ul>
         </div>
     )
@@ -110,7 +110,7 @@ const DishDetail = (props) => {
                 <div className="row">
                     {dishDetail}
                     <RenderComment comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id} />
                 </div>
             </div>
@@ -148,7 +148,7 @@ class CommentForm extends Component {
     handleSubmit(values) {
         // alert("Current state is " + JSON.stringify(values));
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -168,6 +168,7 @@ class CommentForm extends Component {
                                 <Label htmlFor="rating" md={4}>Rating</Label>
                                 <Col md={12}>
                                     <Control.select model=".rating" name="rating" className="form-control">
+                                        <option>Please Select</option>
                                         <option>5</option>
                                         <option>4</option>
                                         <option>3</option>

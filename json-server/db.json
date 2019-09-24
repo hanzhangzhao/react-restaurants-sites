@@ -201,6 +201,13 @@
       "comment": "It's your birthday, we're gonna party!",
       "author": "25 Cent",
       "date": "2011-12-02T17:57:28.556094Z"
+    },
+    {
+      "dishId": 0,
+      "author": "hanzhang zhao",
+      "comment": "this is a test comment.\n",
+      "date": "2019-09-24T03:16:25.568Z",
+      "id": 20
     }
   ],
   "promotions": [
